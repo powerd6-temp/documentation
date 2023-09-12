@@ -1,0 +1,15 @@
+{
+    "cSpell.words": [
+        "powerd6"
+    ],
+    "Workspace_Formatter.excludePattern": [
+        "**/.git",
+        "**/dist",
+        "**/node_modules",
+        "**/playwright-report",
+        "**/test-results"
+    ],
+    "files.associations": {
+        "*.mdx": "markdown"
+    }
+}

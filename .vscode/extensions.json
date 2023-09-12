@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "astro-build.astro-vscode",
+    "ms-playwright.playwright",
+    "streetsidesoftware.code-spell-checker",
+    "franneck94.workspace-formatter"
+  ],
+  "unwantedRecommendations": []
+}

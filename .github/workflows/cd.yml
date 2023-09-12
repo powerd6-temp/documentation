@@ -1,0 +1,82 @@
+name: Continuous Delivery
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  # Only cancel in-progress if on a Pull Request
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+env:
+  NODE_VERSION: 20.4.0
+jobs:
+  test:
+    name: Test
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: "npm"
+    - name: Install dependencies
+      run: npm ci
+    - name: Run tests
+      run: npm run test
+  build:
+    name: Build
+    needs: test
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: "npm"
+    - name: Install dependencies
+      run: npm ci
+    - name: Setup GitHub Pages
+      id: pages
+      uses: actions/configure-pages@v3
+    - name: Run Build
+      run: npm run build
+    - uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: website
+        path: dist/
+        if-no-files-found: error
+        retention-days: 3
+  deploy:
+    name: Deploy
+    needs: build
+    if: ${{ github.ref == 'refs/heads/main' }}
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download build
+        id: download
+        uses: actions/download-artifact@v3
+        with:
+          name: website
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+      - name: Upload to pages
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ${{steps.download.outputs.download-path}}/
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+
