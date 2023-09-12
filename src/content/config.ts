@@ -31,9 +31,19 @@ const experiment = defineCollection({
     })
 })
 
+// A chapter that needs to be read
+const chapter = defineCollection({
+    type: 'content',
+    schema: z.object({
+        title: z.string(),
+        excerpt: z.string().optional(),
+        order: z.number().int().positive(),
+    })
+})
 
 export const collections = {
     'glossary': glossary,
     'glossaryPage': glossaryPage,
     'experiment': experiment,
+    'chapter': chapter,
 };
