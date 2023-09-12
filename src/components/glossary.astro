@@ -1,22 +1,28 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import { getEntry, type CollectionEntry, getEntryBySlug } from "astro:content";
 
 interface Props {
-    term: CollectionEntry<"glossary">;
+    term: string;
 }
 
-// `post` will match your 'blog' collection schema type
 const { term } = Astro.props;
+const termEntry = await getEntry("glossary", term);
+if (!termEntry) {
+    throw new Error(
+        `Glossary component used with term that didn't exist: ${term}`,
+    );
+}
 ---
 
 {
-    term.data.relatedPage ? (
-        <a href={term.data.relatedPage.slug} title={term.data.definition}>
-            {term.data.term}
+    termEntry.data.relatedPage ? (
+        <a
+            href={termEntry.data.relatedPage.slug}
+            title={termEntry.data.definition}
+        >
+            {termEntry.data.term}
         </a>
     ) : (
-        <em title={term.data.definition}>
-            {term.data.term}
-        </em>
+        <em title={termEntry.data.definition}>{termEntry.data.term}</em>
     )
 }
