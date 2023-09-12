@@ -1,6 +1,6 @@
-# powerd6/template_website
+# powerd6/documentation
 
-A website, with testing and configuration pre-made.
+The knowledge base for the project.
 
 ## Development setup
 
