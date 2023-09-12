@@ -22,7 +22,18 @@ const glossaryPage = defineCollection({
     })
 })
 
+// An experiment that was, or is being, performed to help decision making
+const experiment = defineCollection({
+    type: 'content',
+    schema: z.object({
+        name: z.string(),
+        goal: z.string(),
+    })
+})
+
+
 export const collections = {
     'glossary': glossary,
     'glossaryPage': glossaryPage,
+    'experiment': experiment,
 };
