@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    term: CollectionEntry<"glossary">;
+}
+
+// `post` will match your 'blog' collection schema type
+const { term } = Astro.props;
+---
+
+{
+    term.data.relatedPage ? (
+        <a href={term.data.relatedPage.slug} title={term.data.definition}>
+            {term.data.term}
+        </a>
+    ) : (
+        <em title={term.data.definition}>
+            {term.data.term}
+        </em>
+    )
+}
