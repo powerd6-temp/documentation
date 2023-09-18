@@ -1,0 +1,35 @@
+---
+import Glossary from "@components/glossary.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+const glossaryTerms = await getCollection("glossary");
+
+const glossaryTermsByLetter = glossaryTerms.reduce((result, term) => {
+    const firstLetter = term.data.term.charAt(0).toUpperCase();
+    if (result.has(firstLetter)) {
+        result.set(firstLetter, [...result.get(firstLetter)!, term]);
+    } else {
+        result.set(firstLetter, [term]);
+    }
+    return result;
+}, new Map<string, CollectionEntry<"glossary">[]>());
+---
+
+<p>Here are the glossary terms, ordered alphabetically:</p>
+
+<ol>
+    {
+        [...glossaryTermsByLetter.keys()].map((letter) => (
+            <li>
+                <h1>{letter}</h1>
+                <ol>
+                    {glossaryTermsByLetter.get(letter)!.map((term) => (
+                        <li>
+                            <Glossary term={term.id} /> : {term.data.definition}
+                        </li>
+                    ))}
+                </ol>
+            </li>
+        ))
+    }
+</ol>
