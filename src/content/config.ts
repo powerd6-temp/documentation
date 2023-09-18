@@ -1,15 +1,5 @@
-import { z, reference, defineCollection } from 'astro:content';
-
-// Defines a term and it's meaning. Optionally, the term can be explained  with a full-length page.
-const glossary = defineCollection({
-    type: 'content',
-    schema: z.object({
-        // The term, or word
-        term: z.string(),
-        // A short definition, meant to be used in tooltips
-        definition: z.string()
-    }),
-});
+import { z, defineCollection } from 'astro:content';
+import { glossary } from './glossary/_';
 
 // An experiment that was, or is being, performed to help decision making
 const experiment = defineCollection({

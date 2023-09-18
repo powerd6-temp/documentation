@@ -1,5 +1,6 @@
 ---
 import { getEntry, type CollectionEntry, getEntryBySlug } from "astro:content";
+import { glossaryHasLongFormExplanation } from "src/content/glossary/_";
 
 interface Props {
     term: string;
@@ -15,7 +16,7 @@ if (!termEntry) {
 ---
 
 {
-    termEntry.body || termEntry.body.trim() !== "" ? (
+    glossaryHasLongFormExplanation(termEntry) ? (
         <a
             href={`/glossary/${termEntry.slug}`}
             title={termEntry.data.definition}
