@@ -1,4 +1,4 @@
-import { defineConfig, devices,expect } from '@playwright/test';
+import { defineConfig, devices, expect } from '@playwright/test';
 import matchers from 'expect-axe-playwright'
 expect.extend(matchers)
 

@@ -14,7 +14,10 @@ const glossaryTermsByLetter = glossaryTerms.reduce((result, term) => {
     return result;
 }, new Map<string, CollectionEntry<"glossary">[]>());
 
-function sortAlphabetically(a: CollectionEntry<"glossary">, b: CollectionEntry<"glossary">): number {
+function sortAlphabetically(
+    a: CollectionEntry<"glossary">,
+    b: CollectionEntry<"glossary">,
+): number {
     return a.data.term.localeCompare(b.data.term);
 }
 ---
@@ -27,11 +30,15 @@ function sortAlphabetically(a: CollectionEntry<"glossary">, b: CollectionEntry<"
             <li>
                 <h1>{letter}</h1>
                 <ol>
-                    {glossaryTermsByLetter.get(letter)!.sort(sortAlphabetically).map((entry) => (
-                        <li>
-                            <Glossary term={entry.data.term} /> : {entry.data.definition}
-                        </li>
-                    ))}
+                    {glossaryTermsByLetter
+                        .get(letter)!
+                        .sort(sortAlphabetically)
+                        .map((entry) => (
+                            <li>
+                                <Glossary term={entry.data.term} /> :{" "}
+                                {entry.data.definition}
+                            </li>
+                        ))}
                 </ol>
             </li>
         ))
