@@ -15,9 +15,9 @@ if (!termEntry) {
 ---
 
 {
-    termEntry.data.relatedPage ? (
+    termEntry.body || termEntry.body.trim()==="" ? (
         <a
-            href={termEntry.data.relatedPage.slug}
+            href={`/glossary/${termEntry.slug}`}
             title={termEntry.data.definition}
         >
             {termEntry.data.term}

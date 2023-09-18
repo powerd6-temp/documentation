@@ -2,7 +2,7 @@
 import Glossary from "@components/glossary.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 export async function getStaticPaths() {
-    const glossaryPages = await getCollection('glossaryPage');
+    const glossaryPages = await getCollection('glossary');
     return glossaryPages.map(entry => ({
         params: {
             slug: entry.slug
@@ -15,11 +15,11 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-    entry: CollectionEntry<'glossaryPage'>;
+    entry: CollectionEntry<'glossary'>;
 }
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
-<h1><Glossary term={entry.data.glossary.id} /></h1>
+<h1><Glossary term={entry.data.term} /></h1>
 <Content />

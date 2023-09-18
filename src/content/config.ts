@@ -1,26 +1,15 @@
 import { z, reference, defineCollection } from 'astro:content';
 
-// Defines a term and it's meaning
+// Defines a term and it's meaning. Optionally, the term can be explained  with a full-length page.
 const glossary = defineCollection({
-    type: 'data',
+    type: 'content',
     schema: z.object({
         // The term, or word
         term: z.string(),
-        // A short definitions
-        definition: z.string(),
-        // Optionally, a reference to a page that further explains it
-        relatedPage: reference('glossaryPage').optional(),
+        // A short definition, meant to be used in tooltips
+        definition: z.string()
     }),
 });
-
-// Explains a specific glossary item at length
-const glossaryPage = defineCollection({
-    type: 'content',
-    schema: z.object({
-        // The relevant glossary term
-        glossary: reference('glossary')
-    })
-})
 
 // An experiment that was, or is being, performed to help decision making
 const experiment = defineCollection({
@@ -43,7 +32,6 @@ const chapter = defineCollection({
 
 export const collections = {
     'glossary': glossary,
-    'glossaryPage': glossaryPage,
     'experiment': experiment,
     'chapter': chapter,
 };

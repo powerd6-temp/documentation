@@ -27,9 +27,9 @@ function sortAlphabetically(a: CollectionEntry<"glossary">, b: CollectionEntry<"
             <li>
                 <h1>{letter}</h1>
                 <ol>
-                    {glossaryTermsByLetter.get(letter)!.sort(sortAlphabetically).map((term) => (
+                    {glossaryTermsByLetter.get(letter)!.sort(sortAlphabetically).map((entry) => (
                         <li>
-                            <Glossary term={term.id} /> : {term.data.definition}
+                            <Glossary term={entry.data.term} /> : {entry.data.definition}
                         </li>
                     ))}
                 </ol>
