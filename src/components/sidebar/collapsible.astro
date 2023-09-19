@@ -9,10 +9,16 @@ const { title, startOpen = false } = Astro.props;
 ---
 
 <nav x-data={`{open:${startOpen}}`}>
-    <h1 class="py-2" x-on:click="open = ! open">{title}</h1>
+    <header
+        class="py-2 pb-1 mb-4 flex justify-between border-b-2 border-secondary-500"
+        x-on:click="open = ! open"
+    >
+        <h1>{title}</h1>
+        <button class="text-xs text-secondary-800" x-text="open ? 'collapse' : 'expand'">+</button>
+    </header>
     <ol
         class="transition-all duration-300 ml-8 max-h-0 overflow-y-auto"
-        x-bind:class="open ? 'max-h-96' : ''"
+        x-bind:class="open ? 'max-h-96 opacity-100' : 'opacity-0'"
     >
         <slot>
             <p>
