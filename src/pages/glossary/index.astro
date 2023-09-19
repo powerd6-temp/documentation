@@ -1,6 +1,7 @@
 ---
 import Glossary from "@components/glossary.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
+import { sortAlphabetically } from "src/content/glossary/_";
 
 const glossaryTerms = await getCollection("glossary");
 
@@ -14,12 +15,6 @@ const glossaryTermsByLetter = glossaryTerms.reduce((result, term) => {
     return result;
 }, new Map<string, CollectionEntry<"glossary">[]>());
 
-function sortAlphabetically(
-    a: CollectionEntry<"glossary">,
-    b: CollectionEntry<"glossary">,
-): number {
-    return a.data.term.localeCompare(b.data.term);
-}
 ---
 
 <p>Here are the glossary terms, ordered alphabetically:</p>
