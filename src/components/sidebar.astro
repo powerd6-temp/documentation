@@ -6,14 +6,17 @@ import SidebarCollapsible from "./sidebar/collapsible.astro";
 const chapters = await getCollection("chapter");
 const experiments = await getCollection("experiment");
 ---
-
-<aside class="-order-1" x-data="{open:true}">
+<style>
+    [x-cloak] { display: none !important; }
+</style>
+<aside class="-order-1" x-data="{open:false}">
     <section
-        class="bg-secondary-400 p-4 py-8 transition-all duration-500 fixed sm:relative top-0 left-0 h-screen sm:h-full w-screen sm:w-96 flex flex-col justify-center sm:block"
-        x-bind:class="open ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'"
+        class="bg-secondary-400 p-4 py-8 transition-all duration-500 fixed md:relative top-0 left-0 h-screen md:h-full w-screen md:w-96 flex flex-col justify-center md:block md:translate-x-0"
+        x-bind:class="open ? 'translate-x-0' : 'translate-x-full'"
+        x-cloak
     >
         <Search />
-        <main class="mt-4">
+        <main class="mt-8">
             <a href="/glossary">Glossary</a>
             <SidebarCollapsible title="Chapters" startOpen>
                 {
@@ -40,9 +43,9 @@ const experiments = await getCollection("experiment");
         </main>
     </section>
     <button
-    class="p-2 w-20 aspect-1 fixed top-4 left-2 sm:hidden"
+    class="p-1 w-14 aspect-1 fixed top-2 right-2 md:hidden text-sm"
     x-bind:class="open ? 'bg-secondary-500' : 'bg-secondary-400'"
         x-on:click="open = ! open"
-        x-text="open ? 'Hide menu' : 'Show menu'">Show Menu</button
+        x-text="open ? 'Hide Menu' : 'Show Menu'">Show Menu</button
     >
 </aside>
