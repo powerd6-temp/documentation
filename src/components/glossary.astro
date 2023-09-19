@@ -14,16 +14,15 @@ if (!termEntry) {
     );
 }
 ---
-
 {
     glossaryHasLongFormExplanation(termEntry) ? (
-        <a
+        <a class="cursor-help"
             href={`/glossary/${termEntry.slug}`}
             title={termEntry.data.definition}
         >
             {termEntry.data.term}
         </a>
     ) : (
-        <em title={termEntry.data.definition}>{termEntry.data.term}</em>
+        <em class="cursor-help" title={termEntry.data.definition}>{termEntry.data.term}</em>
     )
 }
