@@ -14,12 +14,20 @@ const { seo } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <SEO {...seo} />
+        <SEO
+            {...{
+                titleTemplate: "%s - powerd6/documentation",
+                ...seo,
+            }}
+        />
         <slot name="page-head" />
     </head>
     <body>
         <slot>
-            <p>If you see this text, then the page using this was not constructed correctly.</p>
+            <p>
+                If you see this text, then the page using this was not
+                constructed correctly.
+            </p>
             <p>Make sure you are filling this slot.</p>
         </slot>
         <slot name="post-body" />
