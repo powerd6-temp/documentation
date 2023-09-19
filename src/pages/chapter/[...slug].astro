@@ -1,5 +1,5 @@
 ---
-import Article from "@layouts/article.astro";
+import Basic from "@layouts/basic.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 export async function getStaticPaths() {
     const chapters = await getCollection("chapter");
@@ -21,12 +21,16 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Article
+<Basic
     seo={{
         title: entry.data.title,
         description: entry.data.excerpt,
     }}
 >
-    <h1>{entry.data.title}</h1>
-    <Content />
-</Article>
+    <article>
+        <header>
+            <h1>{entry.data.title}</h1>
+        </header>
+        <Content />
+    </article>
+</Basic>

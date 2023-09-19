@@ -1,5 +1,5 @@
 ---
-import Article from "@layouts/article.astro";
+import Basic from "@layouts/basic.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 export async function getStaticPaths() {
     const experimentPages = await getCollection("experiment");
@@ -21,7 +21,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Article
+<Basic
     seo={{
         title: entry.data.name,
         titleTemplate: "%s - experiments - powerd6/documentation",
@@ -31,4 +31,4 @@ const { Content } = await entry.render();
     <h1>{entry.data.name}</h1>
     <p>{entry.data.goal}</p>
     <Content />
-</Article>
+</Basic>
