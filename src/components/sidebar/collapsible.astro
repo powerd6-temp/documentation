@@ -1,15 +1,18 @@
 ---
 interface Props {
-    title?: string;
+    title: string;
     startOpen?: boolean;
 }
 
 const { title, startOpen = false } = Astro.props;
 ---
 
-<nav class="mb-2">
-    {title ? <h1 class="border-b-2 mb-1">{title}</h1> : ""}
-    <ol class="ml-2">
+<nav x-data={`{open:${startOpen}}`}>
+    <h1 class="py-2" x-on:click="open = ! open">{title}</h1>
+    <ol
+        class="transition-all duration-300 max-h-0 overflow-hidden bg-neutral-50"
+        x-bind:class="open ? 'max-h-96' : ''"
+    >
         <slot>
             <p>
                 If you see this text, then the page using this was not

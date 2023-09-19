@@ -10,7 +10,7 @@ const experiments = await getCollection("experiment");
 <aside class="max-w-xs p-2">
     <Search />
     <a href="/glossary" class="sticky top-0">Glossary</a>
-    <SidebarCollapsible title="Chapters">
+    <SidebarCollapsible title="Chapters" startOpen>
         {
             chapters.map((chapter) => (
                 <li>
