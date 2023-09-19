@@ -2,15 +2,14 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 export async function getStaticPaths() {
     const chapters = await getCollection("chapter");
-    return chapters
-        .map((entry) => ({
-            params: {
-                slug: entry.slug,
-            },
-            props: {
-                entry,
-            },
-        }));
+    return chapters.map((entry) => ({
+        params: {
+            slug: entry.slug,
+        },
+        props: {
+            entry,
+        },
+    }));
 }
 
 interface Props {

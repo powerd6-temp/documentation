@@ -13,7 +13,7 @@ export const glossary = defineCollection({
 });
 
 export function glossaryHasLongFormExplanation(glossary: CollectionEntry<'glossary'>) {
-    return glossary.body !== null && glossary.body !==undefined && glossary.body.trim() != "";
+    return glossary.body !== null && glossary.body !== undefined && glossary.body.trim() != "";
 }
 
 export function sortAlphabetically(

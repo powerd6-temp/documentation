@@ -2,15 +2,14 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 export async function getStaticPaths() {
     const experimentPages = await getCollection("experiment");
-    return experimentPages
-        .map((entry) => ({
-            params: {
-                slug: entry.slug,
-            },
-            props: {
-                entry,
-            },
-        }));
+    return experimentPages.map((entry) => ({
+        params: {
+            slug: entry.slug,
+        },
+        props: {
+            entry,
+        },
+    }));
 }
 
 interface Props {
