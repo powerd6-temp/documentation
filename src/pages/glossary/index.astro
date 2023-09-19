@@ -23,7 +23,7 @@ const glossaryTermsByLetter = glossaryTerms.reduce((result, term) => {
     {
         [...glossaryTermsByLetter.keys()].sort().map((letter) => (
             <li>
-                <h1>{letter}</h1>
+                <h1 id={`letter-${letter.toLocaleLowerCase()}`}>{letter}</h1>
                 <ol>
                     {glossaryTermsByLetter
                         .get(letter)!
