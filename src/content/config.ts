@@ -1,11 +1,22 @@
 import { z, defineCollection } from 'astro:content';
-import { glossary } from './glossary/_';
+
+const pageSchema = z.object({
+    title: z.string()
+});
+
+// Defines a term and it's meaning. Optionally, the term can be explained  with a full-length page.
+const glossary = defineCollection({
+    type: 'content',
+    schema: pageSchema.extend({
+        // A short definition, meant to be used in tooltips
+        definition: z.string()
+    }),
+});
 
 // An experiment that was, or is being, performed to help decision making
 const experiment = defineCollection({
     type: 'content',
-    schema: z.object({
-        name: z.string(),
+    schema: pageSchema.extend({
         goal: z.string(),
         startDate: z.date(),
         endDate: z.date().optional(),
@@ -15,8 +26,7 @@ const experiment = defineCollection({
 // A chapter that needs to be read
 const chapter = defineCollection({
     type: 'content',
-    schema: z.object({
-        title: z.string(),
+    schema: pageSchema.extend({
         excerpt: z.string().optional(),
         order: z.number().int().positive(),
     })

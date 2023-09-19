@@ -1,16 +1,16 @@
 ---
-import { getEntry, type CollectionEntry, getEntryBySlug } from "astro:content";
-import { glossaryHasLongFormExplanation } from "src/content/glossary/_";
+import { getEntry, type CollectionEntry } from "astro:content";
+import { glossaryHasLongFormExplanation } from "@libs/glossary";
 
 interface Props {
-    term: string;
+    word: string;
 }
 
-const { term } = Astro.props;
-const termEntry = await getEntry("glossary", term);
+const { word } = Astro.props;
+const termEntry = await getEntry("glossary", word);
 if (!termEntry) {
     throw new Error(
-        `Glossary component used with term that didn't exist: ${term}`,
+        `Glossary component used with term that didn't exist: ${word}`,
     );
 }
 ---
@@ -22,14 +22,14 @@ if (!termEntry) {
             href={`/glossary/${termEntry.slug}`}
             title={termEntry.data.definition}
         >
-            {termEntry.data.term}
+            {termEntry.data.title}
         </a>
     ) : (
         <em
             class="cursor-help italic underline underline-offset-1 "
             title={termEntry.data.definition}
         >
-            {termEntry.data.term}
+            {termEntry.data.title}
         </em>
     )
 }

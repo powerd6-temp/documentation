@@ -23,12 +23,12 @@ const { Content } = await entry.render();
 
 <Basic
     seo={{
-        title: entry.data.name,
+        title: entry.data.title,
         titleTemplate: "%s - experiments - powerd6/documentation",
         description: entry.data.goal,
     }}
 >
-    <h1>{entry.data.name}</h1>
+    <h1>{entry.data.title}</h1>
     <p>{entry.data.goal}</p>
     <Content />
 </Basic>

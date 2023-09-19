@@ -1,12 +1,12 @@
 ---
 import Glossary from "@components/glossary.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
-import { sortAlphabetically } from "src/content/glossary/_";
+import { sortAlphabetically } from "@libs/glossary";
 
 const glossaryTerms = await getCollection("glossary");
 
 const glossaryTermsByLetter = glossaryTerms.reduce((result, term) => {
-    const firstLetter = term.data.term.charAt(0).toUpperCase();
+    const firstLetter = term.data.title.charAt(0).toUpperCase();
     if (result.has(firstLetter)) {
         result.set(firstLetter, [...result.get(firstLetter)!, term]);
     } else {
@@ -29,7 +29,7 @@ const glossaryTermsByLetter = glossaryTerms.reduce((result, term) => {
                         .sort(sortAlphabetically)
                         .map((entry) => (
                             <li>
-                                <Glossary term={entry.data.term} /> :{" "}
+                                <Glossary word={entry.data.title} /> :{" "}
                                 {entry.data.definition}
                             </li>
                         ))}

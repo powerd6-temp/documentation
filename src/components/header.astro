@@ -1,0 +1,18 @@
+---
+interface Props {
+    title: string;
+}
+
+const {title } = Astro.props;
+---
+<header>
+    <h1>{title}</h1>
+    <h2>powerd6/documentation</h2>
+    <nav class="flex flex-row gap-4">
+        <a href="/chapter/introduction">/chapter/introduction</a>
+        <a href="/experiment">/experiment</a>
+        <a href="/experiment/sample">/experiment/sample</a>
+        <a href="/glossary">/glossary</a>
+        <a href="/glossary/powerd6">/glossary/powerd6</a>
+    </nav>
+</header>

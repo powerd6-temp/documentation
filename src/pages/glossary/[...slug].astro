@@ -2,7 +2,7 @@
 import Glossary from "@components/glossary.astro";
 import Basic from "@layouts/basic.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
-import { glossaryHasLongFormExplanation } from "src/content/glossary/_";
+import { glossaryHasLongFormExplanation } from "@libs/glossary";
 export async function getStaticPaths() {
     const glossaryPages = await getCollection("glossary");
     return glossaryPages
@@ -27,11 +27,11 @@ const { Content } = await entry.render();
 
 <Basic
     seo={{
-        title: entry.data.term,
+        title: entry.data.title,
         titleTemplate: "%s - glossary - powerd6/documentation",
         description: entry.data.definition,
     }}
 >
-    <h1><Glossary term={entry.data.term} /></h1>
+    <h1><Glossary word={entry.data.title} /></h1>
     <Content />
 </Basic>

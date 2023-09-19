@@ -10,7 +10,7 @@ const experiments = await getCollection("experiment");
     {
         experiments.map((experiment) => (
             <a href={`/experiment/${experiment.slug}`}>
-                {experiment.data.name}
+                {experiment.data.title}
             </a>
         ))
     }

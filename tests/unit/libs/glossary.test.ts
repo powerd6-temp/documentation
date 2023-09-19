@@ -1,5 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
-import { glossaryHasLongFormExplanation } from 'src/content/glossary/_';
+import { glossaryHasLongFormExplanation } from 'src/libs/glossary';
 import { describe, expect, test } from 'vitest';
 import { Mock } from "moq.ts";
 
