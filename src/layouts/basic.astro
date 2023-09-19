@@ -1,0 +1,27 @@
+---
+import { SEO, type Props as SeoProps } from "astro-seo";
+
+interface Props {
+    seo: SeoProps;
+}
+
+const { seo } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <SEO {...seo} />
+        <slot name="page-head" />
+    </head>
+    <body>
+        <slot>
+            <p>Seems like this page was not constructed correctly.</p>
+            <p>Make sure you are filling this slot.</p>
+        </slot>
+        <slot name="post-body" />
+    </body>
+</html>

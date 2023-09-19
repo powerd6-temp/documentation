@@ -1,19 +1,16 @@
 ---
 import Glossary from "@components/glossary.astro";
+import BasicLayout from "@layouts/basic.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<main>
-			<h1>Astro</h1>
-			<Glossary term="powerd6" />
-		</main>
-	</body>
-</html>
+<BasicLayout
+	seo={{
+		title: "powerd6/documentation",
+		description: "The knowledge base for the powerd6 project.",
+	}}
+>
+	<main>
+		<h1>Astro</h1>
+		<Glossary term="powerd6" />
+	</main>
+</BasicLayout>
