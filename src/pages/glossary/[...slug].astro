@@ -1,5 +1,6 @@
 ---
 import Glossary from "@components/glossary.astro";
+import Article from "@layouts/article.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { glossaryHasLongFormExplanation } from "src/content/glossary/_";
 export async function getStaticPaths() {
@@ -24,5 +25,13 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<h1><Glossary term={entry.data.term} /></h1>
-<Content />
+<Article
+    seo={{
+        title: entry.data.term,
+        titleTemplate: "%s - glossary - powerd6/documentation",
+        description: entry.data.definition,
+    }}
+>
+    <h1><Glossary term={entry.data.term} /></h1>
+    <Content />
+</Article>
