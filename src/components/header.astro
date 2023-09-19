@@ -3,24 +3,11 @@ import type { CollectionEntry } from "astro:content";
 
 interface Props {
     title: string;
-    entry?:
-        | CollectionEntry<"chapter">
-        | CollectionEntry<"experiment">
-        | CollectionEntry<"glossary">;
 }
 
-const { entry, title } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <header class="w-screen p-4 bg-primary-200 text-center">
     <h1 class="font-bold text-2xl">{title}</h1>
-    <!-- TODO: remove navigation -->
-    <nav class="flex flex-row gap-4 text-xs">
-        <a href="/">/</a>
-        <a href="/chapter/introduction">/chapter/introduction</a>
-        <a href="/experiment">/experiment</a>
-        <a href="/experiment/sample">/experiment/sample</a>
-        <a href="/glossary">/glossary</a>
-        <a href="/glossary/powerd6">/glossary/powerd6</a>
-    </nav>
 </header>
