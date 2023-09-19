@@ -21,13 +21,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Basic
-    seo={{
-        title: entry.data.title,
-        titleTemplate: "%s - experiments - powerd6/documentation",
-        description: entry.data.goal,
-    }}
->
+<Basic title={entry.data.title} description={entry.data.goal}>
     <h1>{entry.data.title}</h1>
     <p>{entry.data.goal}</p>
     <Content />

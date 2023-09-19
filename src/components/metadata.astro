@@ -1,0 +1,35 @@
+---
+import { SEO, type Props as SeoProps } from "astro-seo";
+interface Props extends SeoProps {}
+
+const seo = Astro.props;
+const generator = Astro.generator;
+---
+
+<SEO
+    {...{
+        titleTemplate: "%s - powerd6/documentation",
+        titleDefault: "powerd6/documentation",
+        charset: "utf-8",
+        extend: {
+            link: [
+                {
+                    rel: "icon",
+                    type: "image/svg+xml",
+                    href: "/favicon.svg",
+                },
+            ],
+            meta: [
+                {
+                    name: "viewport",
+                    content: "width=device-width, initial-scale=1",
+                },
+                {
+                    name: "generator",
+                    content: `${generator}`,
+                },
+            ],
+        },
+        ...seo,
+    }}
+/>

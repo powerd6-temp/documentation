@@ -1,30 +1,22 @@
 ---
 import Header from "@components/header.astro";
-import { SEO, type Props as SeoProps } from "astro-seo";
+import Metadata from "@components/metadata.astro";
 
 interface Props {
-    seo: SeoProps;
+    title?: string;
+    description?: string;
 }
 
-const { seo } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content={Astro.generator} />
-        <SEO
-            {...{
-                titleTemplate: "%s - powerd6/documentation",
-                ...seo,
-            }}
-        />
+        <Metadata {...Astro.props} />
         <slot name="page-head" />
     </head>
     <body>
-        <Header title="test"/>
+        <Header title={title} />
         <aside>
             <p>Aside</p>
         </aside>
@@ -40,6 +32,6 @@ const { seo } = Astro.props;
         <footer>
             <p>Footer</p>
         </footer>
+        <slot name="post-body" />
     </body>
-    <slot name="post-body" />
 </html>
