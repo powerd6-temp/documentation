@@ -23,7 +23,7 @@ const glossaryTermsByLetter = glossaryTerms.reduce((result, term) => {
 >
     <p>Here are the glossary terms, ordered alphabetically:</p>
 
-    <ol class="grid grid-cols-2">
+    <ol class="md:grid md:grid-cols-2">
         {
             [...glossaryTermsByLetter.keys()].sort().map((letter) => (
                 <li class="list-none">
