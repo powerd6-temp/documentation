@@ -1,6 +1,7 @@
 ---
 interface Props {
     title: string;
+    titleLink?: string;
     startOpen?: boolean;
 }
 
@@ -10,7 +11,7 @@ const { title, startOpen = false } = Astro.props;
 <nav x-data={`{open:${startOpen}}`}>
     <h1 class="py-2" x-on:click="open = ! open">{title}</h1>
     <ol
-        class="transition-all duration-300 max-h-0 overflow-hidden bg-neutral-50"
+        class="transition-all duration-300 max-h-0 overflow-hidden"
         x-bind:class="open ? 'max-h-96' : ''"
     >
         <slot>
