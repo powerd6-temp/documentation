@@ -7,29 +7,42 @@ const chapters = await getCollection("chapter");
 const experiments = await getCollection("experiment");
 ---
 
-<aside class="max-w-xs p-2">
-    <Search />
-    <a href="/glossary" class="sticky top-0">Glossary</a>
-    <SidebarCollapsible title="Chapters" startOpen>
-        {
-            chapters.map((chapter) => (
-                <li>
-                    <a href={`/chapter/${chapter.slug}`}>
-                        {chapter.data.title}
-                    </a>
-                </li>
-            ))
-        }
-    </SidebarCollapsible>
-    <SidebarCollapsible title="Experiments">
-        {
-            experiments.map((experiment) => (
-                <li>
-                    <a href={`/experiment/${experiment.slug}`}>
-                        {experiment.data.title}
-                    </a>
-                </li>
-            ))
-        }
-    </SidebarCollapsible>
+<aside class="-order-1" x-data="{open:true}">
+    <section
+        class="bg-secondary-400 p-4 py-8 transition-all duration-500 fixed sm:relative top-0 left-0 h-screen sm:h-full w-screen sm:w-96 flex flex-col justify-center sm:block"
+        x-bind:class="open ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'"
+    >
+        <Search />
+        <main class="mt-4">
+            <a href="/glossary">Glossary</a>
+            <SidebarCollapsible title="Chapters" startOpen>
+                {
+                    chapters.map((chapter) => (
+                        <li>
+                            <a href={`/chapter/${chapter.slug}`}>
+                                {chapter.data.title}
+                            </a>
+                        </li>
+                    ))
+                }
+            </SidebarCollapsible>
+            <SidebarCollapsible title="Experiments">
+                {
+                    experiments.map((experiment) => (
+                        <li>
+                            <a href={`/experiment/${experiment.slug}`}>
+                                {experiment.data.title}
+                            </a>
+                        </li>
+                    ))
+                }
+            </SidebarCollapsible>
+        </main>
+    </section>
+    <button
+    class="p-2 w-20 aspect-1 fixed top-4 left-2 sm:hidden"
+    x-bind:class="open ? 'bg-secondary-500' : 'bg-secondary-400'"
+        x-on:click="open = ! open"
+        x-text="open ? 'Hide menu' : 'Show menu'">Show Menu</button
+    >
 </aside>
