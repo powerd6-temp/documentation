@@ -10,5 +10,5 @@ export default defineConfig({
   build: {
     format: "file"
   },
-  integrations: [mdx(), pagefind(), tailwind(), alpinejs()]
+  integrations: [alpinejs(), mdx(), pagefind(), tailwind()]
 });
