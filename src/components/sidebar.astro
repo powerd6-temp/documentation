@@ -1,14 +1,35 @@
 ---
+import Search from "astro-pagefind/components/Search";
+import { getCollection } from "astro:content";
+import SidebarCollapsible from "./sidebar/collapsible.astro";
 
+const chapters = await getCollection("chapter");
+const experiments = await getCollection("experiment");
 ---
 
-<aside>
-    <!-- TODO: Add searchbar -->
-    <nav>
-        <!-- TODO: add sticky link to glossary -->
-        <ol>
-            <!-- TODO: Add chapters in order -->
-        </ol>
-        <!-- TODO: add link to experiments -->
-    </nav>
+<aside class="max-w-xs p-2">
+    <Search />
+    <a href="/glossary" class="sticky top-0">Glossary</a>
+    <SidebarCollapsible title="Chapters">
+        {
+            chapters.map((chapter) => (
+                <li>
+                    <a href={`/chapter/${chapter.slug}`}>
+                        {chapter.data.title}
+                    </a>
+                </li>
+            ))
+        }
+    </SidebarCollapsible>
+    <SidebarCollapsible title="Experiments">
+        {
+            experiments.map((experiment) => (
+                <li>
+                    <a href={`/experiment/${experiment.slug}`}>
+                        {experiment.data.title}
+                    </a>
+                </li>
+            ))
+        }
+    </SidebarCollapsible>
 </aside>

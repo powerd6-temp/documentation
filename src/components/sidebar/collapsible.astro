@@ -1,0 +1,21 @@
+---
+interface Props {
+    title?: string;
+    startOpen?: boolean;
+}
+
+const { title, startOpen = false } = Astro.props;
+---
+
+<nav class="mb-2">
+    {title ? <h1 class="border-b-2 mb-1">{title}</h1> : ""}
+    <ol class="ml-2">
+        <slot>
+            <p>
+                If you see this text, then the page using this was not
+                constructed correctly.
+            </p>
+            <p>Developer: Make sure you are filling this slot.</p>
+        </slot>
+    </ol>
+</nav>
