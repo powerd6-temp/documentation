@@ -7,6 +7,8 @@ const experiment = defineCollection({
     schema: z.object({
         name: z.string(),
         goal: z.string(),
+        startDate: z.date(),
+        endDate: z.date().optional(),
     })
 })
 
