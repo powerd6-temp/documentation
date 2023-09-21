@@ -3,6 +3,9 @@ import { test, expect } from '@playwright/test';
 const pages = [
   '/',
   '/glossary',
+  '/glossary/powerd6',
+  '/chapter/introduction',
+  '/experiment/sample',
 ]
 
 for (const p of pages) {
