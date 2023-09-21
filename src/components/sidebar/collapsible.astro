@@ -8,7 +8,7 @@ interface Props {
 const { title, startOpen = false } = Astro.props;
 ---
 
-<nav x-data={`{open:${startOpen}}`}>
+<nav x-data={`{open:${startOpen}}`} aria-label={title}>
     <header
         class="py-2 pb-1 mb-4 flex justify-between border-b-2 border-secondary-500"
         x-on:click="open = ! open"
