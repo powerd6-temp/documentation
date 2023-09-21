@@ -2,6 +2,7 @@
 import Search from "astro-pagefind/components/Search";
 import { getCollection } from "astro:content";
 import SidebarCollapsible from "./sidebar/collapsible.astro";
+import { sortByOrder } from "@libs/chapter";
 
 const chapters = await getCollection("chapter");
 const experiments = await getCollection("experiment");
@@ -11,7 +12,7 @@ const experiments = await getCollection("experiment");
 </style>
 <aside class="-order-1" x-data="{open:false}">
     <section
-        class="bg-secondary-400 p-4 py-8 transition-all duration-500 fixed md:relative top-0 left-0 h-screen md:h-full w-screen md:w-96 flex flex-col justify-center md:block md:translate-x-0"
+        class="bg-secondary-400 p-4 py-8 transition-all duration-500 fixed md:relative top-0 left-0 h-screen md:h-full w-screen md:w-96 md:max-w-[30vw] flex flex-col justify-center md:block md:translate-x-0"
         x-bind:class="open ? 'translate-x-0' : 'translate-x-full'"
         x-cloak
     >
@@ -24,7 +25,7 @@ const experiments = await getCollection("experiment");
             <SidebarCollapsible title="Chapters" startOpen>
                 {
                     // TODO: sort this
-                    chapters.map((chapter) => (
+                    chapters.sort(sortByOrder).map((chapter) => (
                         <li>
                             <a href={`/chapter/${chapter.slug}`}>
                                 {chapter.data.title}
