@@ -1,5 +1,4 @@
 import type { CollectionEntry } from 'astro:content';
-import { glossaryHasLongFormExplanation, sortAlphabetically } from 'src/libs/glossary';
 import { describe, expect, test } from 'vitest';
 import { Mock } from "moq.ts";
 import { sortByOrder } from '@libs/chapter';
