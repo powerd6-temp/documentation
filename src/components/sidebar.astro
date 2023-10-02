@@ -3,6 +3,7 @@ import Search from "astro-pagefind/components/Search";
 import { getCollection } from "astro:content";
 import SidebarCollapsible from "./sidebar/collapsible.astro";
 import { sortByOrder } from "@libs/chapter";
+import { sortByDates } from "@libs/experiment";
 
 const chapters = await getCollection("chapter");
 const experiments = await getCollection("experiment");
@@ -44,8 +45,7 @@ const experiments = await getCollection("experiment");
             </SidebarCollapsible>
             <SidebarCollapsible title="Experiments">
                 {
-                    // TODO: sort this
-                    experiments.map((experiment) => (
+                    experiments.sort(sortByDates).map((experiment) => (
                         <li>
                             <a href={`/experiment/${experiment.slug}`}>
                                 {experiment.data.title}
