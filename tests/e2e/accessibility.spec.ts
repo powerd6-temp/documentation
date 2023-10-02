@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const pages = [
   '/',
+  '/404',
   '/glossary',
   '/glossary/powerd6',
   '/chapter/introduction',
