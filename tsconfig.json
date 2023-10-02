@@ -9,6 +9,9 @@
       "@assets/*": [
         "src/assets/*"
       ],
+      "@libs/*": [
+        "src/libs/*"
+      ],
       "@layouts/*": [
         "src/layouts/*"
       ],

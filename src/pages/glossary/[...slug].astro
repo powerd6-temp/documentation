@@ -1,0 +1,35 @@
+---
+import Glossary from "@components/glossary.astro";
+import Basic from "@layouts/basic.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { glossaryHasLongFormExplanation } from "@libs/glossary";
+export async function getStaticPaths() {
+    const glossaryPages = await getCollection("glossary");
+    return glossaryPages
+        .filter(glossaryHasLongFormExplanation)
+        .map((entry) => ({
+            params: {
+                slug: entry.slug,
+            },
+            props: {
+                entry,
+            },
+        }));
+}
+
+interface Props {
+    entry: CollectionEntry<"glossary">;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Basic title={entry.data.title} description={entry.data.definition}>
+    <article>
+        <header>
+            <h1><Glossary word={entry.data.title} /></h1>
+        </header>
+        <Content />
+    </article>
+</Basic>

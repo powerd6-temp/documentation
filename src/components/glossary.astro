@@ -1,0 +1,35 @@
+---
+import { getEntry } from "astro:content";
+import { glossaryHasLongFormExplanation } from "@libs/glossary";
+
+interface Props {
+    word: string;
+}
+
+const { word } = Astro.props;
+const termEntry = await getEntry("glossary", word);
+if (!termEntry) {
+    throw new Error(
+        `Glossary component used with term that didn't exist: ${word}`,
+    );
+}
+---
+
+{
+    glossaryHasLongFormExplanation(termEntry) ? (
+        <a
+            class="cursor-help italic underline underline-offset-1 hover:text-primary-400"
+            href={`/glossary/${termEntry.slug}`}
+            title={termEntry.data.definition}
+        >
+            {termEntry.data.title}
+        </a>
+    ) : (
+        <em
+            class="cursor-help italic underline underline-offset-1 "
+            title={termEntry.data.definition}
+        >
+            {termEntry.data.title}
+        </em>
+    )
+}

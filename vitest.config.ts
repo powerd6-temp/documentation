@@ -7,7 +7,10 @@ export default getViteConfig({
     exclude: [
       ...configDefaults.exclude,
       'tests/e2e/*',
-    ]
+    ],
     // Vitest configuration options
+    reporters: [
+      'verbose'
+    ]
   },
 });

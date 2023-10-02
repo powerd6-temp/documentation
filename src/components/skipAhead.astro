@@ -1,0 +1,15 @@
+---
+interface Props {
+    destination: string;
+}
+
+const { destination } = Astro.props;
+---
+
+<a
+    href={destination}
+    role="button"
+    class="rounded-md bg-primary-400 p-2 transition-all duration-300 hover:ring-1 hover:ring-offset-1 hover:ring-primary-500"
+>
+    <slot />
+</a>

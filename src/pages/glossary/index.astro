@@ -1,0 +1,48 @@
+---
+import Glossary from "@components/glossary.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { sortAlphabetically } from "@libs/glossary";
+import Basic from "@layouts/basic.astro";
+
+const glossaryTerms = await getCollection("glossary");
+
+const glossaryTermsByLetter = glossaryTerms.reduce((result, term) => {
+    const firstLetter = term.data.title.charAt(0).toUpperCase();
+    if (result.has(firstLetter)) {
+        result.set(firstLetter, [...result.get(firstLetter)!, term]);
+    } else {
+        result.set(firstLetter, [term]);
+    }
+    return result;
+}, new Map<string, CollectionEntry<"glossary">[]>());
+---
+
+<Basic
+    title="Glossary"
+    description="A list of glossary terms, some of which have a longer explanation."
+>
+    <p>Here are the glossary terms, ordered alphabetically:</p>
+
+    <ol class="md:grid md:grid-cols-2">
+        {
+            [...glossaryTermsByLetter.keys()].sort().map((letter) => (
+                <li class="list-none">
+                    <h1 id={`letter-${letter.toLocaleLowerCase()}`}>
+                        {letter}
+                    </h1>
+                    <ol>
+                        {glossaryTermsByLetter
+                            .get(letter)!
+                            .sort(sortAlphabetically)
+                            .map((entry) => (
+                                <li class="list-disc">
+                                    <Glossary word={entry.data.title} />:
+                                    {entry.data.definition}
+                                </li>
+                            ))}
+                    </ol>
+                </li>
+            ))
+        }
+    </ol>
+</Basic>

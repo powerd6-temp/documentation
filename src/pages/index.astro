@@ -1,18 +1,84 @@
 ---
-
+import Glossary from "@components/glossary.astro";
+import RelatedContent from "@components/relatedContent.astro";
+import SkipAhead from "@components/skipAhead.astro";
+import BasicLayout from "@layouts/basic.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<main>
-			<h1>Astro</h1>
-		</main>
-	</body>
-</html>
+<BasicLayout
+	title="Documentation"
+	description="The knowledge base for the powerd6 project."
+>
+	<article>
+		<h1>Welcome to the <Glossary word="powerd6" /> documentation pages!</h1>
+		<p>
+			This page is the guide for users, <Glossary word="authors" /> and <Glossary
+				word="contributors"
+			/>.
+		</p>
+		<p>
+			It is <b>strongly recommended</b> that you read this in the order it
+			is presented.
+		</p>
+
+		<h2>Features</h2>
+
+		<p>
+			This website has an integrated search functionality on the sidebar.
+			Type anything and it will do it's best to suggest to you relevant
+			pages.
+		</p>
+		<p class="md:hidden">
+			Since you are on a small screen, the sidebar is hidden by default,
+			and can be toggled with the button on the top-right of the screen.
+		</p>
+
+		<p>
+			These pages have features that allow you to browse them easily, skip
+			to relevant parts, open related content, and quickly reference
+			important terms.
+		</p>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Feature</th>
+					<th>Sample</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Skip-ahead</td>
+					<td
+						><SkipAhead destination="/">
+							Skip to some content
+						</SkipAhead></td
+					>
+				</tr>
+				<tr>
+					<td>Related content</td>
+					<td
+						><RelatedContent
+							title="A relevant page"
+							destination="/"
+							excerpt="Relevant to the current page, maybe you should visit it!"
+						/></td
+					>
+				</tr>
+				<tr>
+					<td>Quick references</td>
+					<td>
+						<Glossary word="powerd6" />
+						<p class="text-sm">
+							(hover for a quick reference, or click on it for a
+							full explanation!)
+						</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2>Ready to go?</h2>
+		<SkipAhead destination="/chapter/introduction">Get started!</SkipAhead>
+	</article>
+</BasicLayout>

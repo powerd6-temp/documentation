@@ -1,0 +1,27 @@
+---
+import GithubIssue from "@components/githubIssue.astro";
+import BasicLayout from "@layouts/basic.astro";
+---
+
+<BasicLayout
+    title="Page not found!"
+    description="The link you used does not work."
+>
+    <article>
+        <h1>This address does not exist</h1>
+        <p>The address you typed or clicked does not exist.</p>
+        <ol>
+            <li><b>If you've typed it:</b> check for spelling mistakes</li>
+            <li>
+                <b>If you've cliked it:</b> sorry, this is our fault. Please,
+                help us do better and <GithubIssue
+                    title="Link directs users to address that does not exist"
+                    template="broken_link.md"
+                    labels={["goal: fix", "good first issue"]}
+                >
+                    submit a bug
+                </GithubIssue>, so we can fix it.
+            </li>
+        </ol>
+    </article>
+</BasicLayout>

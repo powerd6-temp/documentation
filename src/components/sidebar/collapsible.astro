@@ -1,0 +1,34 @@
+---
+interface Props {
+    title: string;
+    titleLink?: string;
+    startOpen?: boolean;
+}
+
+const { title, startOpen = false } = Astro.props;
+---
+
+<nav x-data={`{open:${startOpen}}`} aria-label={title}>
+    <header
+        class="py-2 pb-1 mb-4 flex justify-between border-b-2 border-secondary-500"
+        x-on:click="open = ! open"
+    >
+        <h1>{title}</h1>
+        <button
+            class="text-xs text-secondary-950"
+            x-text="open ? 'collapse' : 'expand'">+</button
+        >
+    </header>
+    <ol
+        class="transition-all duration-300 ml-8 max-h-0 overflow-y-auto"
+        x-bind:class="open ? 'max-h-96 opacity-100' : 'opacity-0'"
+    >
+        <slot>
+            <p>
+                If you see this text, then the page using this was not
+                constructed correctly.
+            </p>
+            <p>Developer: Make sure you are filling this slot.</p>
+        </slot>
+    </ol>
+</nav>

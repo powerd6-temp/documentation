@@ -1,0 +1,56 @@
+---
+interface Props {
+    title: string;
+    body?: string;
+    labels?: string[];
+    milestone?: string;
+    assignees?: string;
+    projects?: string;
+    template?: string;
+}
+
+const { title, body, labels, milestone, assignees, projects, template } =
+    Astro.props;
+
+const BASE_ISSUE_URL = "https://github.com/powerd6/documentation/issues/new";
+
+const url = [`${BASE_ISSUE_URL}?title=${encodeURIComponent(title)}`];
+
+if (body) {
+    url.push(`body=${body}`);
+}
+
+if (labels) {
+    url.push(`labels=${labels.map((l) => encodeURIComponent(l)).join(",")}`);
+}
+
+if (milestone) {
+    url.push(`milestone=${milestone}`);
+}
+
+if (assignees) {
+    url.push(`milestone=${assignees}`);
+}
+
+if (projects) {
+    url.push(`milestone=${projects}`);
+}
+
+if (template) {
+    url.push(`milestone=${template}`);
+}
+---
+
+<a
+    target="_blank"
+    href={url.join("&")}
+    title={`Report issue to Github: ${title}`}
+>
+    <slot>
+        <p>
+            If you see this text, then the page using this was not constructed
+            correctly.
+        </p>
+        <p>Developer: Make sure you are filling this slot.</p>
+    </slot>
+</a>
