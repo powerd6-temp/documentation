@@ -9,3 +9,11 @@ export function sortByOrder(
     }
     return a.data.order > b.data.order ? 1 : -1
 }
+
+export function findOnlyParentChapters(chapter: CollectionEntry<"chapter">): boolean {
+    return !chapter.data.parent
+}
+
+export function findChildrenOfChapter(chapter: CollectionEntry<"chapter">, parentChapter: CollectionEntry<"chapter">): boolean {
+    return chapter.data.parent?.slug == parentChapter.slug
+}

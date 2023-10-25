@@ -35,3 +35,7 @@ describe('Chapters are ordered by', () => {
         expect([bar, foo].sort(sortByOrder)).toEqual([foo, bar])
     })
 })
+describe('Chapters are filtered by', () => {
+    // TODO: Implement test to find parent chapters
+    // TODO: Implement test to find children chapters of a specific parent
+});
