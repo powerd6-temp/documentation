@@ -1,4 +1,4 @@
-import { z, defineCollection } from 'astro:content';
+import { z, defineCollection, reference } from 'astro:content';
 
 const pageSchema = z.object({
     title: z.string()
@@ -29,6 +29,7 @@ const chapter = defineCollection({
     schema: pageSchema.extend({
         excerpt: z.string().optional(),
         order: z.number().int().positive(),
+        parent: reference('chapter').optional(),
     })
 })
 
