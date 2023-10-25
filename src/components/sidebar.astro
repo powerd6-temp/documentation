@@ -2,7 +2,8 @@
 import Search from "astro-pagefind/components/Search";
 import { getCollection } from "astro:content";
 import SidebarCollapsible from "./sidebar/collapsible.astro";
-import { sortByOrder } from "@libs/chapter";
+import ChapterItem from './chapter/parentItem.astro'
+import { findChildrenOfChapter, findOnlyParentChapters, sortByOrder } from "@libs/chapter";
 import { sortByDates } from "@libs/experiment";
 
 const chapters = await getCollection("chapter");
@@ -33,13 +34,8 @@ const experiments = await getCollection("experiment");
             </ol>
             <SidebarCollapsible title="Chapters" startOpen>
                 {
-                    // TODO: sort this
-                    chapters.sort(sortByOrder).map((chapter) => (
-                        <li>
-                            <a href={`/chapter/${chapter.slug}`}>
-                                {chapter.data.title}
-                            </a>
-                        </li>
+                    chapters.filter(findOnlyParentChapters).sort(sortByOrder).map((chapter) => (
+                        <ChapterItem chapter={chapter} childrenChapters={chapters.filter(c=>findChildrenOfChapter(c, chapter))}/>
                     ))
                 }
             </SidebarCollapsible>

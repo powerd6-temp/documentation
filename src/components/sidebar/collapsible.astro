@@ -5,7 +5,7 @@ interface Props {
     startOpen?: boolean;
 }
 
-const { title, startOpen = false } = Astro.props;
+const { title, titleLink, startOpen = false } = Astro.props;
 ---
 
 <nav x-data={`{open:${startOpen}}`} aria-label={title}>
@@ -13,7 +13,7 @@ const { title, startOpen = false } = Astro.props;
         class="py-2 pb-1 mb-4 flex justify-between border-b-2 border-secondary-500"
         x-on:click="open = ! open"
     >
-        <h1>{title}</h1>
+        {titleLink ? <h1><a href={titleLink}>{title}</a></h1> : <h1>{title}</h1>}
         <button
             class="text-xs text-secondary-950"
             x-text="open ? 'collapse' : 'expand'">+</button

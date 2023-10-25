@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Item from "./item.astro";
+
+interface Props {
+    chapter: CollectionEntry<"chapter">;
+    childrenChapters: CollectionEntry<"chapter">[];
+}
+
+const { chapter, childrenChapters } = Astro.props;
+---
+
+{
+    childrenChapters.length ? (
+        <li>
+            <a href={`/chapter/${chapter.slug}`}>{chapter.data.title}</a>
+            {childrenChapters.length}
+        </li>
+    ) : (
+        <Item chapter={chapter} />
+    )
+}
