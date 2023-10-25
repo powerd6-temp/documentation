@@ -22,14 +22,18 @@ if (!termEntry) {
             href={`/glossary/${termEntry.slug}`}
             title={termEntry.data.definition}
         >
-            {termEntry.data.title}
+            <slot>
+                {termEntry.data.title}
+            </slot>
         </a>
     ) : (
         <em
             class="cursor-help italic underline underline-offset-1 "
             title={termEntry.data.definition}
         >
-            {termEntry.data.title}
+            <slot>
+                {termEntry.data.title}
+            </slot>
         </em>
     )
 }
