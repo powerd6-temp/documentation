@@ -1,8 +1,8 @@
 ---
 import Search from "astro-pagefind/components/Search";
 import { getCollection } from "astro:content";
-import SidebarCollapsible from "./sidebar/collapsible.astro";
-import ChapterItem from './chapter/parentItem.astro'
+import SidebarCollapsible from "@components/sidebar/collapsible.astro";
+import ChapterItem from '@components/chapter/parentItem.astro'
 import { findChildrenOfChapter, findOnlyParentChapters, sortByOrder } from "@libs/chapter";
 import { sortByDates } from "@libs/experiment";
 
