@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import {sortByOrder} from "@libs/chapter";
 import Item from "@components/chapter/item.astro";
 
 interface Props {
@@ -14,7 +15,11 @@ const { chapter, childrenChapters } = Astro.props;
     childrenChapters.length ? (
         <li>
             <a href={`/chapter/${chapter.slug}`}>{chapter.data.title}</a>
-            {childrenChapters.length}
+            <ol class="pl-2">
+                {childrenChapters.sort(sortByOrder).map((childChapter) => (
+                        <Item chapter={childChapter}/>
+                    ))}
+            </ol>
         </li>
     ) : (
         <Item chapter={chapter} />
